@@ -1,0 +1,300 @@
+
+  * {
+    font-family: Montserrat;
+    font-size: 14px;
+    color: #1F2128;
+    box-sizing: border-box;
+    font-weight: 400;
+    font-style: Regular;
+    line-height: 130%;
+    letter-spacing: 0px;
+    vertical-align: middle;
+  }
+
+  body {
+    background: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  /* ===== MODAL ===== */
+  .wrapper {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .modal {
+    width: 370px;
+    height: 326px;
+    margin: 85px 104px 85px 104px;
+    padding: 10px 0;
+    border-radius: 6px;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    box-shadow: 0px 8px 15px 0px #1414141F;
+    box-shadow: 0px 0px 4px 0px #1414141A;
+  }
+
+  .text {
+    width: 386px;
+    height: 62px;
+    opacity: 1;
+    margin-bottom: 90px;
+    font-family: Montserrat;
+    font-weight: 400; 
+    color: #FF0000;
+    font-size: 24px;
+    line-height: 130%;
+    letter-spacing: 0px;
+    text-align: center;
+  }
+
+  .text span {
+    color: #FF0000;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 24px;
+    line-height: 130%;
+    letter-spacing: 0px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  @keyframes rowFlashFade {
+    0% {
+      background-color: #C0ECFF;
+      outline: 2px solid #80DAFF;
+    }
+    40% {
+      background-color: #C0ECFF;
+      outline: 2px solid #80DAFF;
+    }
+    100% {
+      background-color: rgba(192, 236, 255, 0);
+      outline: 2px solid rgba(128, 218, 255, 0);
+    }
+  }
+
+  .row.row-flash,
+  .row-page.row-flash {
+    animation: rowFlashFade 650ms linear forwards;
+  }
+
+  .row,
+  .row-page {
+    cursor: pointer;
+  }
+
+  .row {
+    width: 370px;
+    height: 42px;
+    margin-top: -1px;
+    margin-left: -1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 15px 8px 22px;
+  }
+
+  .row-page {
+    width: 370px;
+    height: 42px;
+    margin-top: -1px;
+    margin-left: -1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 15px 8px 22px;
+  }
+
+  .line {
+    padding: 10px 15px 10px 15px;
+  }
+
+  .border {
+    height: 0.7px;
+    background: #CDCDCD;
+  }
+
+  .list-scroll {
+    width: 370px;
+    height: 164px;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .list-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ===== CHECKBOX ===== */
+  .wrap-checkbox {
+    width: 35px;
+    height: 35px;
+    position: relative;
+  }
+
+  .checkbox {
+    width: 23px;
+    height: 23px;
+    margin-top: 6.5px;
+    margin-left: 6px;
+    position: relative;
+    cursor: pointer;
+    border-radius: 6px;
+    background: #FFFFFF;
+  }
+
+  /* focus ring */
+  .focus-ring {
+    position: absolute;
+    inset: -2px;
+    border-radius: 6px;
+    border: 3px solid #2469F61A;
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* rectangle */
+  .rectangle {
+    position: absolute;
+    inset: 0;
+    border-radius: 6px;
+    background: #FFFFFF;
+    border: 1px solid #CDCDCD;
+    z-index: 1;
+  }
+
+  /* checkmark */
+  .checkmark {
+    position: absolute;
+    shape-rendering: geometricPrecision;
+    opacity: 0;
+    z-index: 2;
+    top: 5.52px;
+    left: 3.68px;
+  }
+
+  .checkmark path {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ===== STATES ===== */
+
+  /* Hover unchecked */
+  .checkbox.state-2 .rectangle {
+    border-color: #BDBDBD;
+  }
+
+  .checkbox.state-2 .checkmark {
+    opacity: 1;
+  }
+
+  .checkbox.state-2 .checkmark path {
+    stroke: #E3E3E3;
+  }
+
+  .checkbox.state-8 .rectangle {
+    border-color: #BDBDBD;
+  }
+
+  .checkbox.state-8 .checkmark {
+    opacity: 1;
+  }
+
+  .checkbox.state-8 .checkmark path {
+    stroke: #E3E3E3;
+  }
+
+  /* Press unchecked (FOCUS RING ONLY HERE) */
+  .checkbox.state-3 .rectangle {
+    border-color: #BDBDBD;
+    background-color: #FFFFFF;
+  }
+
+  .checkbox.state-3 .focus-ring {
+    opacity: 1;
+  }
+
+  .checkbox.state-3 .checkmark {
+    opacity: 1;
+  }
+
+  .checkbox.state-3 .checkmark path {
+    stroke: #878787;
+  }
+
+  /* Checked */
+  .checkbox.state-4,
+  .checkbox.state-6 {
+    background: #5087F8;
+    border-radius: 6px;
+  }
+
+  .checkbox.state-7 .focus-ring {
+    opacity: 1;
+  }
+
+  .checkbox.state-5,
+  .checkbox.state-7 {
+    background: #2469F6;
+    border-radius: 6px;
+  }
+
+  .checkbox.state-4 .rectangle,
+  .checkbox.state-5 .rectangle,
+  .checkbox.state-6 .rectangle,
+  .checkbox.state-7 .rectangle {
+    display: none;
+  }
+
+  .checkbox.state-4 .checkmark,
+  .checkbox.state-5 .checkmark,
+  .checkbox.state-6 .checkmark,
+  .checkbox.state-7 .checkmark {
+    opacity: 1;
+  }
+
+  .checkbox.state-4 .checkmark path,
+  .checkbox.state-5 .checkmark path,
+  .checkbox.state-6 .checkmark path,
+  .checkbox.state-7 .checkmark path {
+    stroke: #FFFFFF;
+  }
+
+  /* button */
+  .frame-btn {
+    padding: 10px 15px 10px 15px;
+  }
+
+  .done-btn {
+    width: 340px;
+    height: 40px;
+    background: #FFCE22;
+    border-radius: 4px;
+    padding: 10px 20px 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  /* hover */
+  .done-btn:hover {
+    background: #FFD84D;
+  }
+
+  /* press / active */
+  .done-btn:active {
+    background: #FFCE22;
+  }
