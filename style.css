@@ -273,6 +273,22 @@
     stroke: #FFFFFF;
   }
 
+  .checkbox.state-9 {
+    background: #FFFFFF;
+  }
+
+  .checkbox.state-9 .rectangle {
+    border: 1px solid #CDCDCD;
+  }
+
+  .checkbox.state-9 .checkmark {
+    opacity: 0;
+  }
+
+  .checkbox.state-9 .focus-ring {
+    opacity: 0;
+  }
+
   /* button */
   .frame-btn {
     padding: 10px 15px 10px 15px;

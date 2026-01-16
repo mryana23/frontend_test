@@ -1,10 +1,12 @@
-/* === ROW INTERACTION (TAMBAHAN SAJA) === */
+/* ===== ROW INTERACTION ===== */
 document.querySelectorAll(".row, .row-page").forEach((row) => {
   const checkbox = row.querySelector(".checkbox");
   let readyForFlash = false;
 
   row.addEventListener("mouseenter", () => {
     checkbox.dispatchEvent(new Event("mouseenter"));
+    readyForFlash = false;
+    row.style.cursor = "pointer";
   });
 
   row.addEventListener("mouseleave", () => {
@@ -16,64 +18,95 @@ document.querySelectorAll(".row, .row-page").forEach((row) => {
 
     if (!readyForFlash) {
       checkbox.click();
-      row.style.cursor = "default";
       readyForFlash = true;
+      row.style.cursor = "default";
       return;
     }
 
     row.classList.add("row-flash");
     setTimeout(() => row.classList.remove("row-flash"), 650);
   });
-
-  row.addEventListener("mouseenter", () => {
-    row.style.cursor = "pointer";
-    readyForFlash = false;
-  });
 });
 
-/* === CHECKBOX LOGIC === */
+/* ===== CHECKBOX LOGIC ===== */
 const allCheckbox = document.querySelector(".row .checkbox");
 const pageCheckboxes = document.querySelectorAll(".row-page .checkbox");
 
 function setupCheckbox(cb, isAll = false) {
   let checked = false;
   let hovered = false;
+  let pressed = false;
 
   cb._getChecked = () => checked;
 
   cb._setChecked = (val) => {
     checked = val;
-    cb.className = checked
-      ? hovered ? "checkbox state-4" : "checkbox state-5"
-      : hovered ? "checkbox state-8" : "checkbox state-1";
+    cb.className = checked ? "checkbox state-5" : "checkbox state-9";
   };
 
+  /* HOVER */
   cb.addEventListener("mouseenter", () => {
     hovered = true;
-    cb.className = checked ? "checkbox state-6" : "checkbox state-2";
+
+    if (pressed) return;
+
+    if (checked) {
+      cb.className = "checkbox state-6";
+    } else {
+      cb.className = "checkbox state-2";
+    }
   });
 
   cb.addEventListener("mouseleave", () => {
     hovered = false;
-    cb.className = checked ? "checkbox state-5" : "checkbox state-1";
+    pressed = false;
+
+    if (checked) {
+      cb.className = "checkbox state-5";
+    } else {
+      cb.className = "checkbox state-9";
+    }
   });
 
+  /* PRESS */
   cb.addEventListener("mousedown", () => {
-    cb.className = checked ? "checkbox state-7" : "checkbox state-3";
+    pressed = true;
+
+    if (checked) {
+      cb.className = "checkbox state-7";
+    } else {
+      cb.className = "checkbox state-3";
+    }
   });
 
+  /* RELEASE */
+  cb.addEventListener("mouseup", () => {
+    pressed = false;
+
+    if (checked) {
+      cb.className = hovered ? "checkbox state-6" : "checkbox state-5";
+    } else {
+      cb.className = hovered ? "checkbox state-2" : "checkbox state-9";
+    }
+  });
+
+  /* CLICK TO TOGGLE */
   cb.addEventListener("click", () => {
     if (isAll) return;
 
     checked = !checked;
-    cb.className = checked
-      ? hovered ? "checkbox state-4" : "checkbox state-5"
-      : hovered ? "checkbox state-8" : "checkbox state-1";
+
+    if (checked) {
+      cb.className = hovered ? "checkbox state-4" : "checkbox state-5";
+    } else {
+      cb.className = hovered ? "checkbox state-8" : "checkbox state-9";
+    }
 
     syncAllCheckbox();
   });
 }
 
+/* INIT */
 setupCheckbox(allCheckbox, true);
 pageCheckboxes.forEach((cb) => setupCheckbox(cb));
 
