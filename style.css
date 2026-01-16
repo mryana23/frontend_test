@@ -288,6 +288,21 @@
   .checkbox.state-9 .focus-ring {
     opacity: 0;
   }
+  .checkbox.state-1 {
+    background: #FFFFFF;
+  }
+
+  .checkbox.state-1 .rectangle {
+    border: 1px solid #CDCDCD;
+  }
+
+  .checkbox.state-1 .checkmark {
+    opacity: 0;
+  }
+
+  .checkbox.state-1 .focus-ring {
+    opacity: 0;
+  }
 
   /* button */
   .frame-btn {
